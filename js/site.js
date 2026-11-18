@@ -681,31 +681,47 @@
      ---------------------------------------------------------- */
   const word = $('#giantWord');
   if (word) {
+    const hero = word.closest('.giant');
     const lines = $$('.gl', word), texts = lines.map(l => $('.gl__t', l)), blades = lines.map(l => $('.gl__blade', l));
-    let geo = null;
-    function layout() {
-      const W = word.offsetWidth, H = word.offsetHeight, S = Math.max(W, H) * 1.55; // zoom sur le visage : les lettres se remplissent de pelage
-      geo = { W, H, S };
+    // hauteur d'écran stable (svh : barres du navigateur affichées)
+    const probe = document.createElement('div'); probe.style.cssText = 'position:fixed;top:0;height:100svh;width:0;visibility:hidden;pointer-events:none';
+    document.body.appendChild(probe);
+    // taille des lettres : le hero entier (boutons compris) tient dans un écran de téléphone
+    function fit() {
+      if (innerWidth >= 820) { word.style.removeProperty('--fs'); return; }
+      const W = word.offsetWidth, target = probe.offsetHeight || innerHeight;
+      let fs = Math.min(W * .40, 210);
+      hero.style.minHeight = '0';
+      for (let k = 0; k < 4; k++) {
+        word.style.setProperty('--fs', fs.toFixed(1) + 'px');
+        const over = hero.offsetHeight - target;
+        if (over <= 0) break;
+        fs = Math.max(56, fs - over / 2.46 - 1);
+      }
+      hero.style.minHeight = '';
+    }
+    // la photo, fixe, continue d'une ligne à l'autre
+    function place() {
+      const W = word.offsetWidth, H = word.offsetHeight, S = Math.max(W, H) * 1.55;
       texts.forEach((t, i) => {
         const l = lines[i];
         t.style.backgroundSize = `${S}px ${S}px`;
-        t.dataset.ox = (W - S) / 2 - t.offsetLeft;
-        t.dataset.oy = H / 2 - S * .5 - l.offsetTop;
+        t.style.backgroundPosition = `${((W - S) / 2 - t.offsetLeft).toFixed(1)}px ${(H / 2 - S * .5 - l.offsetTop).toFixed(1)}px`;
         blades[i].style.setProperty('--w', t.offsetWidth + 'px');
         if (l.classList.contains('gl--r')) blades[i].style.right = t.offsetWidth + 'px';
       });
-      drift();
     }
-    function drift() {
-      if (!geo) return;
-      const y = Math.min(scrollY, innerHeight);
-      const dy = REDUCE ? 0 : -y * .22, dx = 0;
-      texts.forEach(t => { t.style.backgroundPosition = `${(+t.dataset.ox + dx).toFixed(1)}px ${(+t.dataset.oy + dy).toFixed(1)}px`; });
-    }
+    const layout = () => { fit(); place(); };
     layout();
-    addEventListener('resize', layout);
+    let lastW = innerWidth;
+    addEventListener('resize', () => { if (innerWidth !== lastW) { lastW = innerWidth; layout(); } }); // iOS : pas de recalcul quand la barre d'adresse bouge
+    addEventListener('orientationchange', () => setTimeout(layout, 300));
     document.fonts && document.fonts.ready.then(layout);
-    onScrollFns.push(drift);
+    // une fois la découpe jouée, on fige tout
+    const done = () => hero.classList.add('cut-done');
+    if (REDUCE) done();
+    else new MutationObserver((m, o) => { if (body.classList.contains('is-open-site')) { setTimeout(done, 2000); o.disconnect(); } }).observe(body, { attributes: true, attributeFilter: ['class'] });
+    if (body.classList.contains('is-open-site')) setTimeout(done, 2000);
   }
   function paintHeroStatus() {
     const el = $('[data-hero-status]'); if (!el) return;

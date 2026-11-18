@@ -182,10 +182,11 @@ body.menu-open .top{background:transparent;box-shadow:none;-webkit-backdrop-filt
    HERO — les lettres géantes (la photo vit dans les lettres)
    ========================================================== */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.giant{background:var(--paper);padding:calc(var(--top) + var(--safe-t) + 4px) var(--pad) 40px}
+.giant{background:var(--paper);min-height:100svh;display:flex;flex-direction:column;padding:calc(var(--top) + var(--safe-t)) var(--pad) calc(18px + var(--safe-b))}
+.giant__title{flex:1;display:flex;flex-direction:column;justify-content:center}
 .giant__title{font-weight:600}
 .giant__word{position:relative;display:block;margin:0 -4px}
-.gl{position:relative;display:block;line-height:.82;font-size:clamp(108px,40vw,210px);letter-spacing:-.02em;text-transform:uppercase}
+.gl{position:relative;display:block;line-height:.82;font-size:var(--fs,clamp(72px,40vw,210px));letter-spacing:-.02em;text-transform:uppercase}
 .gl--r{text-align:right}
 .gl__t{display:inline-block;color:transparent;-webkit-background-clip:text;background-clip:text;background-image:url(../img/vache.jpg);background-repeat:no-repeat;
   clip-path:inset(-10% 100% -10% 0);transition:clip-path .75s cubic-bezier(.7,0,.25,1)}
@@ -201,8 +202,10 @@ body.is-open-site .gl:nth-child(1) .gl__blade{animation-delay:.9s}
 body.is-open-site .gl:nth-child(2) .gl__blade{animation-delay:1.17s}
 body.is-open-site .gl:nth-child(3) .gl__blade{animation-delay:1.44s}
 @keyframes bladeOut{to{opacity:0}}
+.giant.cut-done .gl__t{clip-path:none;transition:none}
+.giant.cut-done .gl__blade{display:none}
 
-.giant__band{position:relative;display:flex;justify-content:space-between;margin-top:22px;padding:10px 0;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500}
+.giant__band{position:relative;display:flex;justify-content:space-between;margin-top:14px;padding:9px 0;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500}
 .giant__band::before,.giant__band::after{content:"";position:absolute;left:0;right:0;height:1px;background:var(--ink);transform:scaleX(0);transition:transform 1s var(--ease) 1.2s}
 .giant__band::before{top:0;transform-origin:0 50%}.giant__band::after{bottom:0;transform-origin:100% 50%}
 .giant__band span{opacity:0;transition:opacity .8s 1.5s}
@@ -210,16 +213,17 @@ body.is-open-site .gl:nth-child(3) .gl__blade{animation-delay:1.44s}
 body.is-open-site .giant__band::before,body.is-open-site .giant__band::after{transform:none}
 body.is-open-site .giant__band span{opacity:1}
 
-.giant__claim{margin-top:24px;font-size:clamp(34px,9.4vw,60px);line-height:1.03;letter-spacing:-.03em;font-weight:400}
+.giant__claim{margin-top:16px;font-size:clamp(28px,min(8.8vw,4.4svh),60px);line-height:1.03;letter-spacing:-.03em;font-weight:400}
 .giant__claim em{font-style:italic;font-weight:300;display:block}
 .giant__claim span,.giant__claim em,.giant__status,.giant__ctas{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .giant__claim span{transition-delay:1.55s}.giant__claim em{transition-delay:1.7s}.giant__status{transition-delay:1.85s}.giant__ctas{transition-delay:1.95s}
 body.is-open-site .giant__claim span,body.is-open-site .giant__claim em,body.is-open-site .giant__status,body.is-open-site .giant__ctas{opacity:1;transform:none}
 .giant__claim span{display:inline-block}
-.giant__status{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:7px 13px;border-radius:999px;background:var(--sage);font-size:13px;font-weight:500}
+.giant__status{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:7px 13px;border-radius:999px;background:var(--sage);font-size:13px;font-weight:500}
 .giant__status i{width:7px;height:7px;border-radius:50%;background:var(--red)}
 .giant__status.open i{background:#4F7A4A;box-shadow:0 0 0 4px rgba(79,122,74,.2)}
-.giant__ctas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.giant__ctas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+@media (max-height:640px){.giant__status{display:none}.giant__ctas .btn{height:46px}}
 .giant__ctas .btn{padding:0 14px}
 
 /* ==========================================================
@@ -553,7 +557,7 @@ body.is-open-site .giant__claim span,body.is-open-site .giant__claim em,body.is-
 @media (min-width:820px){
   :root{--pad:48px;--top:70px}
   section{padding:120px var(--pad)}
-  .giant{display:grid;grid-template-columns:1.15fr .85fr;grid-template-rows:1fr repeat(4,auto);column-gap:56px;align-items:end;min-height:100vh;padding-top:calc(var(--top) + 30px)}
+  .giant{display:grid;flex-direction:initial;grid-template-columns:1.15fr .85fr;grid-template-rows:1fr repeat(4,auto);column-gap:56px;align-items:end;min-height:100vh;padding-top:calc(var(--top) + 30px)}
   .giant__title{grid-row:1/span 5;align-self:center}
   .giant__band{grid-row:2}.giant__claim{grid-row:3}.giant__status{grid-row:4;justify-self:start}.giant__ctas{grid-row:5}
   .gl{font-size:min(19vw,calc((100vh - 140px) / 2.5))}
