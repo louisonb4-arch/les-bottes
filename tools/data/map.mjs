@@ -1,0 +1,21 @@
+import fs from 'fs';
+import {feature} from 'topojson-client';
+import {presimplify, simplify} from 'topojson-simplify';
+import {geoConicConformal, geoPath} from 'd3-geo';
+const topo = JSON.parse(fs.readFileSync('node_modules/world-atlas/countries-10m.json'));
+const st=simplify(presimplify(topo), 0.0004);
+const countries = feature(st, st.objects.countries);
+const W=360,H=470;
+const bbox={type:'Feature',geometry:{type:'Polygon',coordinates:[[[-5.6,42.75],[-5.6,49.55],[1.9,49.55],[1.9,42.75],[-5.6,42.75]]]}};
+const proj=geoConicConformal().parallels([44,49]).rotate([-3,0]).fitExtent([[6,6],[W-6,H-6]],bbox);
+const path=geoPath(proj).digits(1);
+const pick=id=>countries.features.filter(f=>f.id===id);
+const fr=pick('250')[0];
+// clip polygon: rectangular viewport via clipExtent
+proj.clipExtent([[-10,-10],[W+10,H+10]]);
+const others=countries.features.filter(f=>['724','826','832','831','056','276','380'].includes(f.id));
+const out={france:path(fr), others:others.map(f=>path(f)).filter(Boolean).join(''), W,H};
+const pts={nantes:[-1.5536,47.2184],parthenaise:[-0.247,46.649],rouge:[-0.55,47.47],pienoir:[-3.6,47.95],jersey:[-2.13,49.21],vendee:[-1.43,46.67],gascon:[0.58,43.65],kintoa:[-1.42,43.08],rennes:[-1.68,48.11],challans:[-1.877,46.846],agneau:[-0.95,46.5]};
+out.pts=Object.fromEntries(Object.entries(pts).map(([k,v])=>[k,proj(v).map(n=>+n.toFixed(1))]));
+fs.writeFileSync('map.json',JSON.stringify(out));
+console.log(out.france.length, out.others.length, out.pts);
