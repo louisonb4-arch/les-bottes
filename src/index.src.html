@@ -92,47 +92,22 @@
 
 <main>
 
-<!-- ========== HERO : la façade ========== -->
-<section class="facade" id="accueil" aria-label="Accueil">
-  <div class="facade__frame">
-    <div class="sign" aria-hidden="false">
-      <h1 class="sign__word">
-        <span class="sign__les">Les</span>
-        <span class="sign__bar" aria-hidden="true"></span>
-        <span class="sign__main">
-          <span class="sign__bottes">Bottes</span>
-          <span class="sign__sub">Boucherie paysanne</span>
-        </span>
-      </h1>
-    </div>
-
-    <div class="shopwin">
-      <div class="shopwin__box" aria-hidden="true"></div>
-      <div class="shopwin__glass">
-        <img class="shopwin__photo" src="img/vache.jpg" alt="Une vache rustique, de face, élevée par l'un de nos paysans" width="1000" height="1000" fetchpriority="high">
-        <p class="shopwin__vinyl" aria-hidden="true"><span>Viandes affinées</span><span>Charcuterie maison</span><span>Races rustiques &amp; locales</span></p>
-        <div class="hang" id="hang" role="button" tabindex="0" aria-label="Ardoise : horaires du jour">
-          <svg class="hang__string" viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path d="M50 0 L12 60 M50 0 L88 60"/></svg>
-          <div class="hang__nail" aria-hidden="true"></div>
-          <div class="slate-sm">
-            <p class="slate-sm__day" data-today>Aujourd'hui</p>
-            <p class="slate-sm__row"><span>St-Léonard</span><span data-today-hours="leonard">—</span></p>
-            <p class="slate-sm__row"><span>Racine</span><span data-today-hours="racine">—</span></p>
-            <p class="slate-sm__state" data-open-state>—</p>
-          </div>
-        </div>
-      </div>
-      <div class="shopwin__shutter" aria-hidden="true"><span></span></div>
-    </div>
-  </div>
-
-  <div class="facade__copy">
-    <p class="facade__kicker">Nantes · deux boutiques · direct éleveurs</p>
-    <p class="facade__claim">Manger moins de viande, <em>mais de la meilleure.</em></p>
-    <div class="facade__ctas">
-      <a class="btn btn--ink" href="#boutiques">Nos deux boutiques<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn--ghost" href="#fetes">Préparer les fêtes</a>
-    </div>
+<!-- ========== HERO : les lettres géantes ========== -->
+<section class="giant" id="accueil" aria-label="Accueil">
+  <h1 class="giant__title">
+    <span class="sr">Les Bottes, boucherie paysanne à Nantes</span>
+    <span class="giant__word" id="giantWord" aria-hidden="true">
+      <span class="gl"><span class="gl__t">Les</span><i class="gl__blade"></i></span>
+      <span class="gl gl--r"><span class="gl__t">Bot</span><i class="gl__blade"></i></span>
+      <span class="gl"><span class="gl__t">tes</span><i class="gl__blade"></i></span>
+    </span>
+  </h1>
+  <p class="giant__band" aria-hidden="true"><span>Boucherie</span><span>paysanne</span><span>Nantes</span></p>
+  <p class="giant__claim"><span>Manger moins de viande,</span> <em>mais de la meilleure.</em></p>
+  <p class="giant__status" data-hero-status><i></i><span>—</span></p>
+  <div class="giant__ctas">
+    <a class="btn btn--ink" href="#boutiques">Nos boutiques<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="btn btn--ghost" href="#fetes">Les fêtes</a>
   </div>
 </section>
 

@@ -177,7 +177,6 @@
     if (opened) return; opened = true;
     body.classList.remove('is-wrapped');
     body.classList.add('is-open-site');
-    setTimeout(() => hangSwing && hangSwing.kick(-55), 1500); // l'ardoise bouge quand le rideau remonte
   }
   function runPack() {
     let seen = false;
@@ -678,9 +677,55 @@
   }
 
   /* ----------------------------------------------------------
+     HERO — la photo continue d'une ligne à l'autre, et glisse au scroll
+     ---------------------------------------------------------- */
+  const word = $('#giantWord');
+  if (word) {
+    const lines = $$('.gl', word), texts = lines.map(l => $('.gl__t', l)), blades = lines.map(l => $('.gl__blade', l));
+    let geo = null;
+    function layout() {
+      const W = word.offsetWidth, H = word.offsetHeight, S = Math.max(W, H) * 1.55; // zoom sur le visage : les lettres se remplissent de pelage
+      geo = { W, H, S };
+      texts.forEach((t, i) => {
+        const l = lines[i];
+        t.style.backgroundSize = `${S}px ${S}px`;
+        t.dataset.ox = (W - S) / 2 - t.offsetLeft;
+        t.dataset.oy = H / 2 - S * .5 - l.offsetTop;
+        blades[i].style.setProperty('--w', t.offsetWidth + 'px');
+        if (l.classList.contains('gl--r')) blades[i].style.right = t.offsetWidth + 'px';
+      });
+      drift();
+    }
+    function drift() {
+      if (!geo) return;
+      const y = Math.min(scrollY, innerHeight);
+      const dy = REDUCE ? 0 : -y * .22, dx = 0;
+      texts.forEach(t => { t.style.backgroundPosition = `${(+t.dataset.ox + dx).toFixed(1)}px ${(+t.dataset.oy + dy).toFixed(1)}px`; });
+    }
+    layout();
+    addEventListener('resize', layout);
+    document.fonts && document.fonts.ready.then(layout);
+    onScrollFns.push(drift);
+  }
+  function paintHeroStatus() {
+    const el = $('[data-hero-status]'); if (!el) return;
+    const order = ['leonard', 'racine'], open = order.filter(k => status(k).open);
+    if (open.length === 2) { el.classList.add('open'); el.lastElementChild.textContent = 'Les deux boutiques sont ouvertes'; return; }
+    if (open.length === 1) { el.classList.add('open'); el.lastElementChild.textContent = `${SHOPS[open[0]].name} · ${status(open[0]).txt.toLowerCase()}`; return; }
+    el.classList.remove('open');
+    // prochaine ouverture, toutes boutiques confondues
+    const { day, min } = parisNow(); let best = null;
+    for (let k = 0; k <= 7 && !best; k++) {
+      const d = (day + k) % 7;
+      order.forEach(s => { const h = HOURS[s][d]; if (h && (k > 0 || toMin(h[0]) > min) && (!best || toMin(h[0]) < toMin(best.h))) best = { s, h: h[0], k, d }; });
+    }
+    el.lastElementChild.textContent = best ? `Fermé · ${SHOPS[best.s].name} ouvre ${best.k === 0 ? 'à' : best.k === 1 ? 'demain' : ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'][best.d]} ${fmtH(best.h)}` : 'Fermé';
+  }
+
+  /* ----------------------------------------------------------
      DÉMARRAGE
      ---------------------------------------------------------- */
-  paintStatus(); setInterval(paintStatus, 60000);
+  paintStatus(); paintHeroStatus(); setInterval(() => { paintStatus(); paintHeroStatus(); }, 60000);
   $$('[data-year]').forEach(e => e.textContent = new Date().getFullYear());
   runPack();
 })();
