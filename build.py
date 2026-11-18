@@ -35,9 +35,15 @@ out = (src.replace('{{DEPTS}}', depts_svg).replace('{{MAP_FR}}', m['france'])
 assert '{{' not in out, 'placeholder oublié'
 # empreinte de version : le navigateur recharge le CSS/JS dès qu'il change
 import hashlib
+import re as _re
 for f in ('css/site.css', 'js/site.js'):
     h = hashlib.sha1((ROOT / f).read_bytes()).hexdigest()[:8]
     out = out.replace(f'"{f}"', f'"{f}?v={h}"')
+# images aussi : elles sont en cache 1 an, l'empreinte force la nouvelle version quand le fichier change
+def _img(m):
+    p = ROOT / m.group(2)
+    return f'{m.group(1)}="{m.group(2)}?v={hashlib.sha1(p.read_bytes()).hexdigest()[:8]}"' if p.exists() else m.group(0)
+out = _re.sub(r'(src|href)="(img/[^"?]+)"', _img, out)
 (ROOT / 'index.html').write_text(out)
 print('index.html', len(out), 'octets')
 print('pins', json.dumps(m['pts']))
