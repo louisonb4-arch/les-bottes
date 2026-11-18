@@ -33,6 +33,11 @@ out = (src.replace('{{DEPTS}}', depts_svg).replace('{{MAP_FR}}', m['france'])
           .replace('{{COW_BODY}}', COW_BODY)
           .replace('{{COW_CUTS}}', cuts_svg))
 assert '{{' not in out, 'placeholder oublié'
+# empreinte de version : le navigateur recharge le CSS/JS dès qu'il change
+import hashlib
+for f in ('css/site.css', 'js/site.js'):
+    h = hashlib.sha1((ROOT / f).read_bytes()).hexdigest()[:8]
+    out = out.replace(f'"{f}"', f'"{f}?v={h}"')
 (ROOT / 'index.html').write_text(out)
 print('index.html', len(out), 'octets')
 print('pins', json.dumps(m['pts']))
