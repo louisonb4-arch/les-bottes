@@ -58,20 +58,20 @@
     mijoter: { t: 'Mijoter', i: '<path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM2 10h2M20 10h2M10 6c0-1 1-1 1-2M14 6c0-1 1-1 1-2"/>' }
   };
   const CUTS = [
-    { id: 'joue', n: 'Joue', at: [122, 140], m: ['mijoter'], d: 'Un muscle qui travaille beaucoup, riche en collagène : il devient fondant après une longue cuisson.', tip: 'En daube, au vin rouge, trois heures à feu doux.' },
-    { id: 'collier', n: 'Collier', at: [183, 126], m: ['mijoter'], d: 'Une viande gélatineuse et goûteuse, faite pour les plats qui mijotent.', tip: 'Le secret d’un bourguignon qui se tient.' },
-    { id: 'basses', n: 'Basses côtes', at: [244, 112], m: ['griller', 'mijoter'], d: 'Bien persillées, entre le collier et la côte. Généreuses en goût.', tip: 'En tranche épaisse sur le gril, ou braisées.' },
-    { id: 'cote', n: 'Côte & entrecôte', at: [306, 112], m: ['griller'], d: 'La pièce reine, avec ou sans os. Chez nous, elle s’affine en cave avant d’arriver en vitrine.', tip: 'Sortez-la une heure avant, saisissez fort, laissez reposer autant que la cuisson.' },
-    { id: 'fauxfilet', n: 'Faux-filet', at: [383, 92], m: ['griller', 'rotir'], d: 'Tendre, avec son liseré de gras qui nourrit la viande pendant la cuisson.', tip: 'Commencez par le gras, côté poêle, puis saignant.' },
-    { id: 'filet', n: 'Filet', at: [383, 132], m: ['griller', 'rotir'], d: 'Le morceau le plus tendre : tournedos, chateaubriand, rôti de fête.', tip: 'Cuisson courte : il ne pardonne pas l’excès.' },
-    { id: 'rumsteck', n: 'Rumsteck', at: [457, 112], m: ['griller', 'rotir'], d: 'Tendre et goûteux, il donne pavés, aiguillette et rôtis.', tip: 'Au couteau, c’est le meilleur tartare.' },
-    { id: 'cuisse', n: 'Tranche & gîte à la noix', at: [514, 160], m: ['rotir', 'griller'], d: 'Les muscles de la cuisse : maigres et réguliers, pour rôtis, steaks et carpaccio.', tip: 'Le rôti du dimanche, à trancher fin.' },
-    { id: 'paleron', n: 'Paleron & macreuse', at: [242, 200], m: ['mijoter'], d: 'L’épaule : le paleron et son nerf central qui fond, la macreuse moelleuse.', tip: 'En pot-au-feu, la gelée du nerf fait la sauce.' },
-    { id: 'poitrine', n: 'Poitrine', at: [192, 222], m: ['mijoter'], d: 'Entrelardée et savoureuse, elle donne du corps aux bouillons.', tip: 'Indispensable dans un pot-au-feu.' },
-    { id: 'platcotes', n: 'Plat de côtes', at: [324, 200], m: ['mijoter'], d: 'De la viande et du gras sur l’os, pour les cuissons longues.', tip: 'Préparé la veille, il est encore meilleur.' },
-    { id: 'bavette', n: 'Bavette & flanchet', at: [415, 198], m: ['griller', 'mijoter'], d: 'Fibres longues et goût prononcé. La bavette se saisit, le flanchet se mijote.', tip: 'Bavette saignante, échalotes fondues, rien de plus.' },
-    { id: 'jarret', n: 'Jarret', at: [221, 290], m: ['mijoter'], d: 'Le gîte : très gélatineux, il donne un bouillon riche et nappant.', tip: 'Pour un pot-au-feu qui nappe la cuillère.' },
-    { id: 'queue', n: 'Queue', at: [557, 196], m: ['mijoter'], d: 'Petite pièce, grand goût : longue cuisson, bouillon puissant.', tip: 'En parmentier de queue de bœuf.' }
+    { id: 'joue', n: 'Joue', at: [150, 262], m: ['mijoter'], d: 'Un muscle qui travaille beaucoup, riche en collagène : il devient fondant après une longue cuisson.', tip: 'En daube, au vin rouge, trois heures à feu doux.' },
+    { id: 'collier', n: 'Collier', at: [388, 262], m: ['mijoter'], d: 'Une viande gélatineuse et goûteuse, faite pour les plats qui mijotent.', tip: 'Le secret d’un bourguignon qui se tient.' },
+    { id: 'basses', n: 'Basses côtes', at: [532, 268], m: ['griller', 'mijoter'], d: 'Bien persillées, entre le collier et la côte. Généreuses en goût.', tip: 'En tranche épaisse sur le gril, ou braisées.' },
+    { id: 'cote', n: 'Côte & entrecôte', at: [672, 276], m: ['griller'], d: 'La pièce reine, avec ou sans os. Chez nous, elle s’affine en cave avant d’arriver en vitrine.', tip: 'Sortez-la une heure avant, saisissez fort, laissez reposer autant que la cuisson.' },
+    { id: 'fauxfilet', n: 'Faux-filet', at: [837, 252], m: ['griller', 'rotir'], d: 'Tendre, avec son liseré de gras qui nourrit la viande pendant la cuisson.', tip: 'Commencez par le gras, côté poêle, puis saignant.' },
+    { id: 'filet', n: 'Filet', at: [837, 328], m: ['griller', 'rotir'], d: 'Le morceau le plus tendre : tournedos, chateaubriand, rôti de fête.', tip: 'Cuisson courte : il ne pardonne pas l’excès.' },
+    { id: 'rumsteck', n: 'Rumsteck', at: [1000, 280], m: ['griller', 'rotir'], d: 'Tendre et goûteux, il donne pavés, aiguillette et rôtis.', tip: 'Au couteau, c’est le meilleur tartare.' },
+    { id: 'cuisse', n: 'Tranche & gîte à la noix', at: [1185, 420], m: ['rotir', 'griller'], d: 'Les muscles de la cuisse : maigres et réguliers, pour rôtis, steaks et carpaccio.', tip: 'Le rôti du dimanche, à trancher fin.' },
+    { id: 'paleron', n: 'Paleron & macreuse', at: [520, 460], m: ['mijoter'], d: 'L’épaule : le paleron et son nerf central qui fond, la macreuse moelleuse.', tip: 'En pot-au-feu, la gelée du nerf fait la sauce.' },
+    { id: 'poitrine', n: 'Poitrine', at: [392, 545], m: ['mijoter'], d: 'Entrelardée et savoureuse, elle donne du corps aux bouillons.', tip: 'Indispensable dans un pot-au-feu.' },
+    { id: 'platcotes', n: 'Plat de côtes', at: [690, 500], m: ['mijoter'], d: 'De la viande et du gras sur l’os, pour les cuissons longues.', tip: 'Préparé la veille, il est encore meilleur.' },
+    { id: 'bavette', n: 'Bavette & flanchet', at: [930, 505], m: ['griller', 'mijoter'], d: 'Fibres longues et goût prononcé. La bavette se saisit, le flanchet se mijote.', tip: 'Bavette saignante, échalotes fondues, rien de plus.' },
+    { id: 'jarret', n: 'Jarret', at: [455, 770], m: ['mijoter'], d: 'Le gîte : très gélatineux, il donne un bouillon riche et nappant.', tip: 'Pour un pot-au-feu qui nappe la cuillère.' },
+    { id: 'queue', n: 'Queue', at: [1352, 560], m: ['mijoter'], d: 'Petite pièce, grand goût : longue cuisson, bouillon puissant.', tip: 'En parmentier de queue de bœuf.' }
   ];
 
   const FEAST = [
@@ -387,7 +387,7 @@
     BREEDS.forEach((b, i) => {
       const li = document.createElement('article');
       li.className = 'breed'; li.dataset.i = i;
-      li.innerHTML = `<div class="breed__top"><span class="breed__kind"><svg viewBox="0 0 32 32" aria-hidden="true">${ICONS[b.k]}</svg>${b.kind}</span><span class="breed__idx">${String(i + 1).padStart(2, '0')}/${BREEDS.length}</span></div>
+      li.innerHTML = `<div class="breed__top"><span class="breed__kind"><i class="ico" style="-webkit-mask-image:url(img/ic-${b.k}.png);mask-image:url(img/ic-${b.k}.png)" aria-hidden="true"></i>${b.kind}</span><span class="breed__idx">${String(i + 1).padStart(2, '0')}/${BREEDS.length}</span></div>
         <h3>${b.name}</h3><p class="breed__where">${b.where}</p><p>${b.txt}</p>`;
       btrack.appendChild(li);
       const dot = document.createElement('button'); dot.type = 'button'; dot.setAttribute('aria-label', b.name); dotsEl.appendChild(dot);
@@ -471,7 +471,7 @@
     const nums = $('#cowNums'), chips = $('#cutChips'), tag = $('#cutTag');
     CUTS.forEach((c, i) => {
       const g = document.createElementNS(NS, 'g'); g.dataset.cut = c.id;
-      g.innerHTML = `<circle cx="${c.at[0]}" cy="${c.at[1]}" r="8.5"/><text x="${c.at[0]}" y="${c.at[1]}">${i + 1}</text>`;
+      g.innerHTML = `<circle cx="${c.at[0]}" cy="${c.at[1]}" r="35"/><text x="${c.at[0]}" y="${c.at[1]}">${i + 1}</text>`;
       nums.appendChild(g);
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'chip'; b.setAttribute('role', 'tab'); b.dataset.cut = c.id;
@@ -495,7 +495,7 @@
       const fill = () => {
         $('[data-f="num"]', tag).textContent = `N° ${String(i + 1).padStart(2, '0')} — bœuf`;
         $('[data-f="name"]', tag).textContent = c.n;
-        $('[data-f="modes"]', tag).innerHTML = c.m.map(k => `<li><svg viewBox="0 0 24 24" aria-hidden="true">${MODES[k].i}</svg>${MODES[k].t}</li>`).join('');
+        $('[data-f="modes"]', tag).innerHTML = c.m.map(k => `<li><i class="ico" style="-webkit-mask-image:url(img/ic-${k}.png);mask-image:url(img/ic-${k}.png)" aria-hidden="true"></i>${MODES[k].t}</li>`).join('');
         $('[data-f="desc"]', tag).textContent = c.d;
         $('[data-f="tip"]', tag).textContent = c.tip;
       };
@@ -628,11 +628,9 @@
         const side = i % 2 ? 1 : -1;
         const x = 29 + side * 7 + Math.sin(y / 120) * 6;
         const a = 180 + Math.cos(y / 120) * 9 + side * 4;
-        const s = document.createElementNS(NS, 'svg');
-        s.setAttribute('class', 'boot'); s.setAttribute('viewBox', '0 0 40 100');
-        s.innerHTML = '<use href="#boot"/>';
+        const s = document.createElement('i');
+        s.className = 'boot'; s.style.setProperty('--sx', side > 0 ? -1 : 1);
         s.style.left = x + 'px'; s.style.top = y + 'px'; s.style.setProperty('--a', a + 'deg');
-        if (side > 0) s.style.transform = undefined;
         prints.appendChild(s); boots.push({ el: s, y });
       }
       paint();

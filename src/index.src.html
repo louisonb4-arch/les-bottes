@@ -230,14 +230,11 @@
   </header>
 
   <div class="cut__board">
-    <svg class="cow" id="cow" viewBox="70 50 500 285" role="group" aria-label="Schéma de découpe du bœuf">
+    <svg class="cow" id="cow" viewBox="0 0 1408 938" role="group" aria-label="Planche de découpe du bœuf">
       <defs><clipPath id="cowClip"><path d="{{COW_BODY}}"/></clipPath></defs>
-      <path class="cow__far" d="M262 230 L282 230 L280 316 L262 316 Z M466 206 L486 228 L488 316 L470 316 L470 262 Z"/>
-      <path class="cow__part cow__tail" data-cut="queue" tabindex="0" d="M520 78 Q548 92 552 150 L554 226 L546 248 L562 248 L560 226 L558 148 Q552 88 524 74 Z"/>
+      <path class="cow__base" d="{{COW_BODY}}"/>
       <g clip-path="url(#cowClip)" id="cowCuts">{{COW_CUTS}}</g>
-      <path class="cow__outline" d="{{COW_BODY}}"/>
-      <path class="cow__ink" d="M128 100 Q110 92 108 74 Q118 84 136 96 Z M146 100 L174 98 L156 114 Z"/>
-      <circle cx="112" cy="128" r="3.5" class="cow__eye"/>
+      <image class="cow__ink" href="img/boeuf-gravure.webp" x="0" y="0" width="1408" height="938" preserveAspectRatio="none"/>
       <g class="cow__nums" id="cowNums"></g>
     </svg>
 
