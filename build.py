@@ -1,8 +1,8 @@
 """Assemble index.html depuis src/ : injecte la carte (world-atlas) et la planche de découpe."""
 import json, pathlib
 ROOT = pathlib.Path(__file__).parent
-m = json.loads(ROOT / 'tools/data/map.json'.read_text())
-west = json.loads(ROOT / 'tools/data/west.json'.read_text())
+m = json.loads((ROOT / 'tools/data/map.json').read_text())
+west = json.loads((ROOT / 'tools/data/west.json').read_text())
 depts_svg = ''.join(f'<path class="map__dep" data-d="{k}" d="{v["d"]}"><title>{v["n"]}</title></path>' for k, v in west.items())
 
 COW_BODY = ("M210 70 Q330 64 450 72 L472 66 L520 76 Q536 82 540 96 L544 122 Q546 170 528 206 L522 250 L522 320 "
