@@ -181,6 +181,7 @@ body.is-open-site .giant__claim span,body.is-open-site .giant__claim em,body.is-
 .giant__ctas{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
 @media (max-height:640px){.giant__status{display:none}.giant__ctas .btn{height:46px}}
 .giant__ctas .btn{padding:0 14px}
+.giant__kick,.giant__lead,.giant__facts{display:none}
 
 /* ==========================================================
    01 — PARTI PRIS
@@ -538,17 +539,33 @@ body.is-open-site .giant__claim span,body.is-open-site .giant__claim em,body.is-
   .roll__shops{grid-template-columns:1fr;align-self:end}
   .roll__insta{align-self:start}
 
-  /* --- Hero --- */
-  .giant{display:grid;grid-template-columns:auto minmax(320px,1fr);grid-template-rows:1fr auto auto auto auto;column-gap:clamp(48px,6vw,110px);
+  /* --- Hero : lettres à gauche, manifeste à droite --- */
+  .giant{display:grid;grid-template-columns:auto minmax(340px,1fr);grid-template-rows:1fr repeat(5,auto) 1fr;column-gap:clamp(56px,7vw,120px);
     min-height:100vh;padding:calc(var(--top) + 18px) var(--pad) 48px}
-  .giant__title{grid-row:1/span 5;align-self:center;display:block}
+  .giant__title{grid-row:1/-1;align-self:center;display:block}
   .gl{font-size:min(31vw,calc((100vh - var(--top) - 90px) / 2.46),390px)}
   .giant__word{margin:0}
-  .giant__band{grid-column:2;grid-row:2;margin-top:0}
-  .giant__claim{grid-column:2;grid-row:3;font-size:clamp(38px,3.5vw,58px);margin-top:28px}
-  .giant__status{grid-column:2;grid-row:4;justify-self:start;margin-top:26px;font-size:14px}
-  .giant__ctas{grid-column:2;grid-row:5;display:flex;gap:12px;margin-top:26px}
+  .giant__band,.giant__status{display:none}
+  .giant__kick,.giant__lead,.giant__facts{display:block}
+  .giant__kick,.giant__claim,.giant__lead,.giant__facts,.giant__ctas{grid-column:2;max-width:580px}
+  .giant__kick{grid-row:2;display:flex;align-items:center;gap:12px;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;color:var(--sage-ink)}
+  .giant__kick::before{content:"";width:28px;height:1px;background:currentColor}
+  .giant__claim{grid-row:3;font-size:clamp(34px,3.05vw,54px);margin-top:24px}
+  .giant__claim span{white-space:nowrap}
+  .giant__lead{grid-row:4;font-size:clamp(16px,1.25vw,19px);line-height:1.6;color:var(--ink-soft);margin-top:26px;max-width:44ch}
+  .giant__facts{grid-row:5;display:grid;grid-template-columns:repeat(3,1fr);margin-top:36px;border-top:1px solid rgba(30,39,44,.16)}
+  .giant__facts li{padding:20px 16px 0 0}
+  .giant__facts li+li{padding-left:20px;border-left:1px solid rgba(30,39,44,.16)}
+  .giant__facts b{display:block;font-size:clamp(30px,2.6vw,40px);font-weight:400;letter-spacing:-.02em;line-height:1}
+  .giant__facts small{font-size:.5em;margin-left:2px}
+  .giant__facts span{display:block;font-size:13.5px;line-height:1.38;color:var(--sage-ink);margin-top:10px}
+  .giant__ctas{grid-row:6;display:flex;gap:12px;margin-top:38px}
   .giant__ctas .btn{padding:0 26px;height:56px}
+  /* apparition après la lame */
+  .giant__kick,.giant__lead,.giant__facts{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .giant__kick{transition-delay:1.4s}.giant__lead{transition-delay:1.85s}.giant__facts{transition-delay:2s}
+  body.is-open-site .giant__kick,body.is-open-site .giant__lead,body.is-open-site .giant__facts{opacity:1;transform:none}
+  .giant__ctas{transition-delay:2.15s}
 
   /* --- 01 Parti pris --- */
   .pledge{display:grid;grid-template-columns:1fr 1fr;column-gap:96px;align-items:start}
@@ -676,10 +693,10 @@ body.is-open-site .giant__claim span,body.is-open-site .giant__claim em,body.is-
 /* tablette en portrait : hero sur une colonne */
 @media (min-width:820px) and (max-width:1099px) and (orientation:portrait){
   .giant{grid-template-columns:1fr;grid-template-rows:none;align-content:center}
-  .giant__title,.giant__band,.giant__claim,.giant__status,.giant__ctas{grid-column:1;grid-row:auto}
-  .giant__title{margin-bottom:36px}
+  .giant__title,.giant__kick,.giant__claim,.giant__lead,.giant__facts,.giant__ctas{grid-column:1;grid-row:auto}
+  .giant__title{margin-bottom:40px}
   .giant__word{width:fit-content}
-  .gl{font-size:min(30vw,calc((100vh - 470px) / 2.46),300px)}
+  .gl{font-size:min(30vw,calc((100vh - 640px) / 2.46),300px)}
   .giant__claim{font-size:clamp(40px,5.6vw,56px)}
 }
 /* tablette : on resserre la mise en page ordinateur */
