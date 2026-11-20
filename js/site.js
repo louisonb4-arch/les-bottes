@@ -179,25 +179,11 @@
     body.classList.add('is-open-site');
   }
   function runPack() {
-    let seen = false;
-    try { seen = sessionStorage.getItem('lb-pack') === '1'; } catch (e) {}
-    if (location.search.includes('intro')) seen = false;
-    if (REDUCE || seen) { pack.classList.add('is-gone'); openSite(); return; }
-    const T = [];
-    const at = (ms, fn) => T.push(setTimeout(fn, ms));
-    const finish = (fast) => {
-      T.forEach(clearTimeout);
-      if (fast) { pack.classList.add('is-cut', 'is-open'); }
-      openSite();
-      setTimeout(() => pack.classList.add('is-gone'), fast ? 900 : 1200);
-      try { sessionStorage.setItem('lb-pack', '1'); } catch (e) {}
-    };
-    at(120, () => pack.classList.add('is-tie'));
-    at(1250, () => pack.classList.add('is-seal'));
-    at(2250, () => pack.classList.add('is-cut'));
-    at(2600, () => { pack.classList.add('is-open'); finish(false); });
-    pack.addEventListener('click', () => finish(true), { once: true });
+    // plus d'animation d'ouverture : le site s'ouvre directement (la lame du hero se joue au chargement)
+    if (pack) pack.remove();
+    requestAnimationFrame(openSite);
   }
+
 
   /* ----------------------------------------------------------
      HEADER + MENU ROULEAU

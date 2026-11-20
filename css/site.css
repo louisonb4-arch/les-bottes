@@ -90,51 +90,6 @@ section{position:relative;padding:76px var(--pad) 84px}
 .sticker [data-hatch] line{stroke:#B48F5F;stroke-linecap:round}
 
 /* ==========================================================
-   OUVERTURE — le paquet ficelé
-   ========================================================== */
-.pack{position:fixed;inset:0;z-index:200;perspective:1300px;perspective-origin:50% 50%;overflow:hidden}
-.pack.is-gone{display:none}
-.pack__flap{position:absolute;top:0;bottom:0;width:50.5%;overflow:hidden;transform-style:preserve-3d;backface-visibility:hidden;transition:transform 1.1s cubic-bezier(.62,.04,.24,1),opacity .5s .65s}
-.pack__flap--l{left:0;transform-origin:0 50%}
-.pack__flap--r{right:0;transform-origin:100% 50%}
-.pack__flap::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 1.1s var(--ease-io)}
-.pack__flap--l::after{background:linear-gradient(90deg,rgba(30,22,12,.05),rgba(30,22,12,.45))}
-.pack__flap--r::after{background:linear-gradient(270deg,rgba(30,22,12,.05),rgba(30,22,12,.45))}
-.pack__flap--r{box-shadow:inset 8px 0 10px -8px rgba(60,40,15,.35)}
-.pack__face{position:absolute;top:0;bottom:0;width:100vw;background:#CDAF84 url(../img/kraft.jpg) 0 0/360px}
-.pack__flap--l .pack__face{left:0}
-.pack__flap--r .pack__face{right:0}
-
-.pack__twine-h{position:absolute;left:0;right:0;top:calc(50% - 2px);height:4px;
-  background:repeating-linear-gradient(118deg,#F3E9D6 0 3px,#C6A777 3px 4.6px);border-radius:2px;box-shadow:0 1.5px 1px rgba(60,40,15,.28);
-  clip-path:inset(0 100% 0 0);transition:clip-path .85s cubic-bezier(.6,0,.3,1) .1s,transform .7s cubic-bezier(.7,-.35,.3,1)}
-.pack__twine-h svg{display:none}
-.pack__twine-v{position:absolute;left:calc(50% - 2px);width:4px;height:50%;z-index:3;
-  background:repeating-linear-gradient(28deg,#F3E9D6 0 3px,#C6A777 3px 4.6px);box-shadow:1.5px 0 1px rgba(60,40,15,.28);
-  clip-path:inset(0 0 100% 0);transition:clip-path .45s cubic-bezier(.6,0,.3,1),transform .7s cubic-bezier(.7,-.35,.3,1)}
-.pack__twine-v svg{display:none}
-.pack__twine-v--t{top:0;transition-delay:.55s,0s}
-.pack__twine-v--b{top:50%;transition-delay:.95s,0s}
-
-.pack__print{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:22px;z-index:2}
-.sticker--pack{width:min(38vw,170px);aspect-ratio:1;filter:drop-shadow(0 6px 10px rgba(60,40,15,.25));opacity:0;transform:scale(1.35) rotate(-14deg);transition:opacity .2s,transform .55s cubic-bezier(.3,1.6,.5,1)}
-.pack__stamp{position:absolute;top:calc(100% + 22px);white-space:nowrap;font-size:clamp(9.5px,2.9vw,11px);letter-spacing:clamp(.24em,1.2vw,.42em);text-transform:uppercase;font-weight:500;color:rgba(30,39,44,.78);opacity:0;transition:opacity .6s .25s}
-.pack__skip{position:absolute;z-index:4;left:50%;bottom:calc(22px + var(--safe-b));transform:translateX(-50%);font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:500;color:rgba(30,39,44,.6);padding:12px 18px}
-
-.pack.is-tie .pack__twine-h,.pack.is-tie .pack__twine-v{clip-path:inset(0 0 0 0)}
-.pack.is-seal .sticker--pack{opacity:1;transform:scale(1) rotate(-6deg)}
-.pack.is-seal .pack__stamp{opacity:1}
-.pack.is-cut .pack__twine-v--t{transform:translateY(-104%)}
-.pack.is-cut .pack__twine-v--b{transform:translateY(104%)}
-.pack.is-cut .pack__flap--l .pack__twine-h{transform:translateX(-52vw)}
-.pack.is-cut .pack__flap--r .pack__twine-h{transform:translateX(52vw)}
-.pack.is-cut .pack__skip{opacity:0}
-.pack.is-open .pack__flap--l{transform:rotateY(-96deg)}
-.pack.is-open .pack__flap--r{transform:rotateY(96deg)}
-.pack.is-open .pack__flap::after{opacity:1}
-.pack.is-open .pack__flap{opacity:0}
-
-/* ==========================================================
    HEADER + MENU (rouleau de papier)
    ========================================================== */
 .top{position:fixed;z-index:160;top:0;left:0;right:0;height:calc(var(--top) + var(--safe-t));padding:var(--safe-t) 14px 0 16px;display:flex;align-items:center;justify-content:space-between;transition:transform .5s var(--ease),background-color .35s,box-shadow .35s}
@@ -751,7 +706,6 @@ body.is-open-site .giant__claim span,body.is-open-site .giant__claim em,body.is-
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
-  .pack{display:none}
   .album{height:auto}
   .album__pin{position:relative;height:auto}
   .album__table{position:relative;min-height:760px}
